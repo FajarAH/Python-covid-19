@@ -1,0 +1,2073 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 44,
+  "iteration": 1585752682155,
+  "links": [],
+  "panels": [
+    {
+      "content": "<h4 style=\"text-align:right;text-transform:uppercase;v-align:middle;font-size:25px;margin-right:150px;\" markdown=\"1\"><b>covid-19 Dashboard monitoring</font></h4>",
+      "gridPos": {
+        "h": 2,
+        "w": 18,
+        "x": 0,
+        "y": 0
+      },
+      "id": 8,
+      "links": [],
+      "mode": "html",
+      "options": {},
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": false,
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPostfix": false,
+      "colorValue": false,
+      "colors": [
+        "#F2CC0C",
+        "#F2CC0C",
+        "#F2CC0C"
+      ],
+      "datasource": "MySQL-covid",
+      "format": "dateTimeAsIso",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
+      "id": 14,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": "",
+      "postfixFontSize": "30%",
+      "prefix": "Last Update : ",
+      "prefixFontSize": "30%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  datex AS \"time\",\n  cast(confirmed as int)\nFROM covid_data\nWHERE\n  $__timeFilter(datex) AND\n  country like $country\nORDER BY datex",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "cast(confirmed as int)"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "covid_data",
+          "timeColumn": "datex",
+          "timeColumnType": "date",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            },
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "country",
+                "=",
+                "$country"
+              ],
+              "type": "expression"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "30%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "last_time"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPostfix": false,
+      "colorValue": false,
+      "colors": [
+        "#F2CC0C",
+        "rgb(188, 153, 14)",
+        "#E0B400"
+      ],
+      "datasource": "MySQL-covid",
+      "format": "locale",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 0,
+        "y": 2
+      },
+      "id": 2,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": "",
+      "postfixFontSize": "30%",
+      "prefix": "Confirmed Case<br><br><br>",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  datex AS \"time\",\n  sum(cast(confirmed as int))\nFROM covid_data\nWHERE\n  $__timeFilter(datex) AND\n  country like $country\ngroup by 1\nORDER BY datex desc\nlimit 1",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "cast(confirmed as int)"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "covid_data",
+          "timeColumn": "datex",
+          "timeColumnType": "date",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            },
+            {
+              "datatype": "varchar",
+              "name": "",
+              "params": [
+                "country",
+                "=",
+                "$country"
+              ],
+              "type": "expression"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "singlestat",
+      "valueFontSize": "120%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPostfix": false,
+      "colorValue": false,
+      "colors": [
+        "#56A64B",
+        "#37872D",
+        "#56A64B"
+      ],
+      "datasource": "MySQL-covid",
+      "format": "locale",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 8,
+        "y": 2
+      },
+      "id": 5,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": "",
+      "postfixFontSize": "30%",
+      "prefix": "Recovered <br><br><br>",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "country",
+          "rawQuery": true,
+          "rawSql": "select\nsum(cast(recovered as int)) as value,\ndatex as time\nfrom covid_data\nwhere $__timeFilter(datex) and\ncountry like $country\ngroup by 2\norder by 2 desc\nlimit 1",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "singlestat",
+      "valueFontSize": "120%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "total"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPostfix": false,
+      "colorValue": false,
+      "colors": [
+        "#56A64B",
+        "#37872D",
+        "#56A64B"
+      ],
+      "datasource": "MySQL-covid",
+      "decimals": 2,
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 12,
+        "y": 2
+      },
+      "id": 9,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": " ",
+      "postfixFontSize": "30%",
+      "prefix": "Recovery Rate<br><br><br>",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "select\nsum(cast(recovered as int))/sum(cast(confirmed as int))*100 as value,\ndatex as time\nfrom covid_data\nwhere $__timeFilter(datex) and\ncountry like $country\ngroup by 2 \norder by 2 desc\nlimit 1",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "singlestat",
+      "valueFontSize": "120%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPostfix": false,
+      "colorValue": false,
+      "colors": [
+        "#C4162A",
+        "#C4162A",
+        "#C4162A"
+      ],
+      "datasource": "MySQL-covid",
+      "format": "locale",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 16,
+        "y": 2
+      },
+      "id": 6,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": "",
+      "postfixFontSize": "30%",
+      "prefix": "Deaths <br><br><br>",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "select\nsum(cast(deaths as int)) as value,\ndatex as time\nfrom covid_data\nwhere $__timeFilter(datex)and\ncountry like $country\ngroup by 2\norder by 2 desc\nlimit 1",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "singlestat",
+      "valueFontSize": "120%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "total"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorPostfix": false,
+      "colorValue": false,
+      "colors": [
+        "#E02F44",
+        "#C4162A",
+        "#E02F44"
+      ],
+      "datasource": "MySQL-covid",
+      "decimals": 2,
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 20,
+        "y": 2
+      },
+      "id": 10,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": " ",
+      "postfixFontSize": "30%",
+      "prefix": "Mortality Rate<br><br><br>",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "select\nsum(cast(deaths as int))/sum(cast(confirmed as int))*100 as value,\ndatex as time\nfrom covid_data\nwhere $__timeFilter(datex) and\ncountry like $country\ngroup by 2\norder by 2 desc\nlimit 1",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "singlestat",
+      "valueFontSize": "120%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "total"
+    },
+    {
+      "aliasColors": {
+        "Confirmed": "semi-dark-yellow",
+        "Deaths": "semi-dark-red",
+        "Recovered": "semi-dark-green",
+        "confirmed": "light-yellow",
+        "deaths": "dark-red",
+        "recovered": "semi-dark-green"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "MySQL-covid",
+      "fill": 1,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 7
+      },
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 2,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "select\ndatex as time,\n'Confirmed' as metric,\nsum(cast(confirmed as int)) as value\nfrom covid_data\nwhere\ncountry like $country\ngroup by 1\norder by 1\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "select\ndatex as time,\n'Recovered' as metric,\nsum(cast(recovered as int)) as value\nfrom covid_data\nwhere\ncountry like $country\ngroup by 1\norder by 1",
+          "refId": "B",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        },
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "select\ndatex as time,\n'Deaths' as metric,\nsum(cast(deaths as int)) as value\nfrom covid_data\nwhere\ncountry like $country\ngroup by 1\norder by 1",
+          "refId": "C",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "30d",
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Daily Trend",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "columns": [],
+      "datasource": "MySQL-covid",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 7
+      },
+      "id": 12,
+      "links": [],
+      "options": {},
+      "pageSize": 5,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": null,
+        "desc": false
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": "cell",
+          "colors": [
+            "#37872D",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "RecoveryRate",
+          "thresholds": [],
+          "type": "number",
+          "unit": "percent"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "ConfirmedCase",
+          "thresholds": [],
+          "type": "number",
+          "unit": "locale"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "select country, cast(recovered as int)/cast(confirmed as int)*100 as RecoveryRate, confirmed as ConfirmedCase\nfrom covid_data\nwhere $__timeFilter(datex)\norder by datex desc, RecoveryRate desc\nlimit 5\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Top 5 Region by Recovery Rate",
+      "transform": "table",
+      "type": "table"
+    },
+    {
+      "columns": [],
+      "datasource": "MySQL-covid",
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 7
+      },
+      "id": 13,
+      "links": [],
+      "options": {},
+      "pageSize": 5,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": null,
+        "desc": false
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "alias": "",
+          "colorMode": "cell",
+          "colors": [
+            "#C4162A",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "MortalityRate",
+          "thresholds": [],
+          "type": "number",
+          "unit": "percent"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "ConfirmedCase",
+          "thresholds": [],
+          "type": "number",
+          "unit": "locale"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "/.*/",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "select country, cast(deaths as int)/cast(confirmed as int)*100 as MortalityRate, confirmed as ConfirmedCase\nfrom covid_data\nwhere $__timeFilter(datex)\norder by datex desc, MortalityRate desc\nlimit 5\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Top 5 Region by Mortality Rate",
+      "transform": "table",
+      "type": "table"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 18,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": "'%'",
+        "current": {
+          "selected": true,
+          "tags": [],
+          "text": "Indonesia",
+          "value": "Indonesia"
+        },
+        "datasource": "MySQL-covid",
+        "definition": "select distinct(country) from covid_data",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Country/Region",
+        "multi": false,
+        "name": "country",
+        "options": [
+          {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
+            "selected": false,
+            "text": "Afghanistan",
+            "value": "Afghanistan"
+          },
+          {
+            "selected": false,
+            "text": "Albania",
+            "value": "Albania"
+          },
+          {
+            "selected": false,
+            "text": "Algeria",
+            "value": "Algeria"
+          },
+          {
+            "selected": false,
+            "text": "Andorra",
+            "value": "Andorra"
+          },
+          {
+            "selected": false,
+            "text": "Angola",
+            "value": "Angola"
+          },
+          {
+            "selected": false,
+            "text": "Antigua and Barbuda",
+            "value": "Antigua and Barbuda"
+          },
+          {
+            "selected": false,
+            "text": "Argentina",
+            "value": "Argentina"
+          },
+          {
+            "selected": false,
+            "text": "Armenia",
+            "value": "Armenia"
+          },
+          {
+            "selected": false,
+            "text": "Australia",
+            "value": "Australia"
+          },
+          {
+            "selected": false,
+            "text": "Austria",
+            "value": "Austria"
+          },
+          {
+            "selected": false,
+            "text": "Azerbaijan",
+            "value": "Azerbaijan"
+          },
+          {
+            "selected": false,
+            "text": "Bahamas",
+            "value": "Bahamas"
+          },
+          {
+            "selected": false,
+            "text": "Bahrain",
+            "value": "Bahrain"
+          },
+          {
+            "selected": false,
+            "text": "Bangladesh",
+            "value": "Bangladesh"
+          },
+          {
+            "selected": false,
+            "text": "Barbados",
+            "value": "Barbados"
+          },
+          {
+            "selected": false,
+            "text": "Belarus",
+            "value": "Belarus"
+          },
+          {
+            "selected": false,
+            "text": "Belgium",
+            "value": "Belgium"
+          },
+          {
+            "selected": false,
+            "text": "Benin",
+            "value": "Benin"
+          },
+          {
+            "selected": false,
+            "text": "Bhutan",
+            "value": "Bhutan"
+          },
+          {
+            "selected": false,
+            "text": "Bolivia",
+            "value": "Bolivia"
+          },
+          {
+            "selected": false,
+            "text": "Bosnia and Herzegovina",
+            "value": "Bosnia and Herzegovina"
+          },
+          {
+            "selected": false,
+            "text": "Brazil",
+            "value": "Brazil"
+          },
+          {
+            "selected": false,
+            "text": "Brunei",
+            "value": "Brunei"
+          },
+          {
+            "selected": false,
+            "text": "Bulgaria",
+            "value": "Bulgaria"
+          },
+          {
+            "selected": false,
+            "text": "Burkina Faso",
+            "value": "Burkina Faso"
+          },
+          {
+            "selected": false,
+            "text": "Cabo Verde",
+            "value": "Cabo Verde"
+          },
+          {
+            "selected": false,
+            "text": "Cambodia",
+            "value": "Cambodia"
+          },
+          {
+            "selected": false,
+            "text": "Cameroon",
+            "value": "Cameroon"
+          },
+          {
+            "selected": false,
+            "text": "Canada",
+            "value": "Canada"
+          },
+          {
+            "selected": false,
+            "text": "Central African Republic",
+            "value": "Central African Republic"
+          },
+          {
+            "selected": false,
+            "text": "Chad",
+            "value": "Chad"
+          },
+          {
+            "selected": false,
+            "text": "Chile",
+            "value": "Chile"
+          },
+          {
+            "selected": false,
+            "text": "China",
+            "value": "China"
+          },
+          {
+            "selected": false,
+            "text": "Colombia",
+            "value": "Colombia"
+          },
+          {
+            "selected": false,
+            "text": "Congo (Brazzaville)",
+            "value": "Congo (Brazzaville)"
+          },
+          {
+            "selected": false,
+            "text": "Congo (Kinshasa)",
+            "value": "Congo (Kinshasa)"
+          },
+          {
+            "selected": false,
+            "text": "Costa Rica",
+            "value": "Costa Rica"
+          },
+          {
+            "selected": false,
+            "text": "Cote d'Ivoire",
+            "value": "Cote d'Ivoire"
+          },
+          {
+            "selected": false,
+            "text": "Croatia",
+            "value": "Croatia"
+          },
+          {
+            "selected": false,
+            "text": "Diamond Princess",
+            "value": "Diamond Princess"
+          },
+          {
+            "selected": false,
+            "text": "Cuba",
+            "value": "Cuba"
+          },
+          {
+            "selected": false,
+            "text": "Cyprus",
+            "value": "Cyprus"
+          },
+          {
+            "selected": false,
+            "text": "Czechia",
+            "value": "Czechia"
+          },
+          {
+            "selected": false,
+            "text": "Denmark",
+            "value": "Denmark"
+          },
+          {
+            "selected": false,
+            "text": "Djibouti",
+            "value": "Djibouti"
+          },
+          {
+            "selected": false,
+            "text": "Dominican Republic",
+            "value": "Dominican Republic"
+          },
+          {
+            "selected": false,
+            "text": "Ecuador",
+            "value": "Ecuador"
+          },
+          {
+            "selected": false,
+            "text": "Egypt",
+            "value": "Egypt"
+          },
+          {
+            "selected": false,
+            "text": "El Salvador",
+            "value": "El Salvador"
+          },
+          {
+            "selected": false,
+            "text": "Equatorial Guinea",
+            "value": "Equatorial Guinea"
+          },
+          {
+            "selected": false,
+            "text": "Eritrea",
+            "value": "Eritrea"
+          },
+          {
+            "selected": false,
+            "text": "Estonia",
+            "value": "Estonia"
+          },
+          {
+            "selected": false,
+            "text": "Eswatini",
+            "value": "Eswatini"
+          },
+          {
+            "selected": false,
+            "text": "Ethiopia",
+            "value": "Ethiopia"
+          },
+          {
+            "selected": false,
+            "text": "Fiji",
+            "value": "Fiji"
+          },
+          {
+            "selected": false,
+            "text": "Finland",
+            "value": "Finland"
+          },
+          {
+            "selected": false,
+            "text": "France",
+            "value": "France"
+          },
+          {
+            "selected": false,
+            "text": "Gabon",
+            "value": "Gabon"
+          },
+          {
+            "selected": false,
+            "text": "Gambia",
+            "value": "Gambia"
+          },
+          {
+            "selected": false,
+            "text": "Georgia",
+            "value": "Georgia"
+          },
+          {
+            "selected": false,
+            "text": "Germany",
+            "value": "Germany"
+          },
+          {
+            "selected": false,
+            "text": "Ghana",
+            "value": "Ghana"
+          },
+          {
+            "selected": false,
+            "text": "Greece",
+            "value": "Greece"
+          },
+          {
+            "selected": false,
+            "text": "Guatemala",
+            "value": "Guatemala"
+          },
+          {
+            "selected": false,
+            "text": "Guinea",
+            "value": "Guinea"
+          },
+          {
+            "selected": false,
+            "text": "Guyana",
+            "value": "Guyana"
+          },
+          {
+            "selected": false,
+            "text": "Haiti",
+            "value": "Haiti"
+          },
+          {
+            "selected": false,
+            "text": "Holy See",
+            "value": "Holy See"
+          },
+          {
+            "selected": false,
+            "text": "Honduras",
+            "value": "Honduras"
+          },
+          {
+            "selected": false,
+            "text": "Hungary",
+            "value": "Hungary"
+          },
+          {
+            "selected": false,
+            "text": "Iceland",
+            "value": "Iceland"
+          },
+          {
+            "selected": false,
+            "text": "India",
+            "value": "India"
+          },
+          {
+            "selected": true,
+            "text": "Indonesia",
+            "value": "Indonesia"
+          },
+          {
+            "selected": false,
+            "text": "Iran",
+            "value": "Iran"
+          },
+          {
+            "selected": false,
+            "text": "Iraq",
+            "value": "Iraq"
+          },
+          {
+            "selected": false,
+            "text": "Ireland",
+            "value": "Ireland"
+          },
+          {
+            "selected": false,
+            "text": "Israel",
+            "value": "Israel"
+          },
+          {
+            "selected": false,
+            "text": "Italy",
+            "value": "Italy"
+          },
+          {
+            "selected": false,
+            "text": "Jamaica",
+            "value": "Jamaica"
+          },
+          {
+            "selected": false,
+            "text": "Japan",
+            "value": "Japan"
+          },
+          {
+            "selected": false,
+            "text": "Jordan",
+            "value": "Jordan"
+          },
+          {
+            "selected": false,
+            "text": "Kazakhstan",
+            "value": "Kazakhstan"
+          },
+          {
+            "selected": false,
+            "text": "Kenya",
+            "value": "Kenya"
+          },
+          {
+            "selected": false,
+            "text": "Korea, South",
+            "value": "Korea, South"
+          },
+          {
+            "selected": false,
+            "text": "Kuwait",
+            "value": "Kuwait"
+          },
+          {
+            "selected": false,
+            "text": "Kyrgyzstan",
+            "value": "Kyrgyzstan"
+          },
+          {
+            "selected": false,
+            "text": "Latvia",
+            "value": "Latvia"
+          },
+          {
+            "selected": false,
+            "text": "Lebanon",
+            "value": "Lebanon"
+          },
+          {
+            "selected": false,
+            "text": "Liberia",
+            "value": "Liberia"
+          },
+          {
+            "selected": false,
+            "text": "Liechtenstein",
+            "value": "Liechtenstein"
+          },
+          {
+            "selected": false,
+            "text": "Lithuania",
+            "value": "Lithuania"
+          },
+          {
+            "selected": false,
+            "text": "Luxembourg",
+            "value": "Luxembourg"
+          },
+          {
+            "selected": false,
+            "text": "Madagascar",
+            "value": "Madagascar"
+          },
+          {
+            "selected": false,
+            "text": "Malaysia",
+            "value": "Malaysia"
+          },
+          {
+            "selected": false,
+            "text": "Maldives",
+            "value": "Maldives"
+          },
+          {
+            "selected": false,
+            "text": "Malta",
+            "value": "Malta"
+          },
+          {
+            "selected": false,
+            "text": "Mauritania",
+            "value": "Mauritania"
+          },
+          {
+            "selected": false,
+            "text": "Mauritius",
+            "value": "Mauritius"
+          },
+          {
+            "selected": false,
+            "text": "Mexico",
+            "value": "Mexico"
+          },
+          {
+            "selected": false,
+            "text": "Moldova",
+            "value": "Moldova"
+          },
+          {
+            "selected": false,
+            "text": "Monaco",
+            "value": "Monaco"
+          },
+          {
+            "selected": false,
+            "text": "Mongolia",
+            "value": "Mongolia"
+          },
+          {
+            "selected": false,
+            "text": "Montenegro",
+            "value": "Montenegro"
+          },
+          {
+            "selected": false,
+            "text": "Morocco",
+            "value": "Morocco"
+          },
+          {
+            "selected": false,
+            "text": "Namibia",
+            "value": "Namibia"
+          },
+          {
+            "selected": false,
+            "text": "Nepal",
+            "value": "Nepal"
+          },
+          {
+            "selected": false,
+            "text": "Netherlands",
+            "value": "Netherlands"
+          },
+          {
+            "selected": false,
+            "text": "New Zealand",
+            "value": "New Zealand"
+          },
+          {
+            "selected": false,
+            "text": "Nicaragua",
+            "value": "Nicaragua"
+          },
+          {
+            "selected": false,
+            "text": "Niger",
+            "value": "Niger"
+          },
+          {
+            "selected": false,
+            "text": "Nigeria",
+            "value": "Nigeria"
+          },
+          {
+            "selected": false,
+            "text": "North Macedonia",
+            "value": "North Macedonia"
+          },
+          {
+            "selected": false,
+            "text": "Norway",
+            "value": "Norway"
+          },
+          {
+            "selected": false,
+            "text": "Oman",
+            "value": "Oman"
+          },
+          {
+            "selected": false,
+            "text": "Pakistan",
+            "value": "Pakistan"
+          },
+          {
+            "selected": false,
+            "text": "Panama",
+            "value": "Panama"
+          },
+          {
+            "selected": false,
+            "text": "Papua New Guinea",
+            "value": "Papua New Guinea"
+          },
+          {
+            "selected": false,
+            "text": "Paraguay",
+            "value": "Paraguay"
+          },
+          {
+            "selected": false,
+            "text": "Peru",
+            "value": "Peru"
+          },
+          {
+            "selected": false,
+            "text": "Philippines",
+            "value": "Philippines"
+          },
+          {
+            "selected": false,
+            "text": "Poland",
+            "value": "Poland"
+          },
+          {
+            "selected": false,
+            "text": "Portugal",
+            "value": "Portugal"
+          },
+          {
+            "selected": false,
+            "text": "Qatar",
+            "value": "Qatar"
+          },
+          {
+            "selected": false,
+            "text": "Romania",
+            "value": "Romania"
+          },
+          {
+            "selected": false,
+            "text": "Russia",
+            "value": "Russia"
+          },
+          {
+            "selected": false,
+            "text": "Rwanda",
+            "value": "Rwanda"
+          },
+          {
+            "selected": false,
+            "text": "Saint Lucia",
+            "value": "Saint Lucia"
+          },
+          {
+            "selected": false,
+            "text": "Saint Vincent and the Grenadines",
+            "value": "Saint Vincent and the Grenadines"
+          },
+          {
+            "selected": false,
+            "text": "San Marino",
+            "value": "San Marino"
+          },
+          {
+            "selected": false,
+            "text": "Saudi Arabia",
+            "value": "Saudi Arabia"
+          },
+          {
+            "selected": false,
+            "text": "Senegal",
+            "value": "Senegal"
+          },
+          {
+            "selected": false,
+            "text": "Serbia",
+            "value": "Serbia"
+          },
+          {
+            "selected": false,
+            "text": "Seychelles",
+            "value": "Seychelles"
+          },
+          {
+            "selected": false,
+            "text": "Singapore",
+            "value": "Singapore"
+          },
+          {
+            "selected": false,
+            "text": "Slovakia",
+            "value": "Slovakia"
+          },
+          {
+            "selected": false,
+            "text": "Slovenia",
+            "value": "Slovenia"
+          },
+          {
+            "selected": false,
+            "text": "Somalia",
+            "value": "Somalia"
+          },
+          {
+            "selected": false,
+            "text": "South Africa",
+            "value": "South Africa"
+          },
+          {
+            "selected": false,
+            "text": "Spain",
+            "value": "Spain"
+          },
+          {
+            "selected": false,
+            "text": "Sri Lanka",
+            "value": "Sri Lanka"
+          },
+          {
+            "selected": false,
+            "text": "Sudan",
+            "value": "Sudan"
+          },
+          {
+            "selected": false,
+            "text": "Suriname",
+            "value": "Suriname"
+          },
+          {
+            "selected": false,
+            "text": "Sweden",
+            "value": "Sweden"
+          },
+          {
+            "selected": false,
+            "text": "Switzerland",
+            "value": "Switzerland"
+          },
+          {
+            "selected": false,
+            "text": "Taiwan*",
+            "value": "Taiwan*"
+          },
+          {
+            "selected": false,
+            "text": "Tanzania",
+            "value": "Tanzania"
+          },
+          {
+            "selected": false,
+            "text": "Thailand",
+            "value": "Thailand"
+          },
+          {
+            "selected": false,
+            "text": "Togo",
+            "value": "Togo"
+          },
+          {
+            "selected": false,
+            "text": "Trinidad and Tobago",
+            "value": "Trinidad and Tobago"
+          },
+          {
+            "selected": false,
+            "text": "Tunisia",
+            "value": "Tunisia"
+          },
+          {
+            "selected": false,
+            "text": "Turkey",
+            "value": "Turkey"
+          },
+          {
+            "selected": false,
+            "text": "Uganda",
+            "value": "Uganda"
+          },
+          {
+            "selected": false,
+            "text": "Ukraine",
+            "value": "Ukraine"
+          },
+          {
+            "selected": false,
+            "text": "United Arab Emirates",
+            "value": "United Arab Emirates"
+          },
+          {
+            "selected": false,
+            "text": "United Kingdom",
+            "value": "United Kingdom"
+          },
+          {
+            "selected": false,
+            "text": "Uruguay",
+            "value": "Uruguay"
+          },
+          {
+            "selected": false,
+            "text": "US",
+            "value": "US"
+          },
+          {
+            "selected": false,
+            "text": "Uzbekistan",
+            "value": "Uzbekistan"
+          },
+          {
+            "selected": false,
+            "text": "Venezuela",
+            "value": "Venezuela"
+          },
+          {
+            "selected": false,
+            "text": "Vietnam",
+            "value": "Vietnam"
+          },
+          {
+            "selected": false,
+            "text": "Zambia",
+            "value": "Zambia"
+          },
+          {
+            "selected": false,
+            "text": "Zimbabwe",
+            "value": "Zimbabwe"
+          },
+          {
+            "selected": false,
+            "text": "Dominica",
+            "value": "Dominica"
+          },
+          {
+            "selected": false,
+            "text": "Grenada",
+            "value": "Grenada"
+          },
+          {
+            "selected": false,
+            "text": "Mozambique",
+            "value": "Mozambique"
+          },
+          {
+            "selected": false,
+            "text": "Syria",
+            "value": "Syria"
+          },
+          {
+            "selected": false,
+            "text": "Timor-Leste",
+            "value": "Timor-Leste"
+          },
+          {
+            "selected": false,
+            "text": "Belize",
+            "value": "Belize"
+          },
+          {
+            "selected": false,
+            "text": "Laos",
+            "value": "Laos"
+          },
+          {
+            "selected": false,
+            "text": "Libya",
+            "value": "Libya"
+          },
+          {
+            "selected": false,
+            "text": "West Bank and Gaza",
+            "value": "West Bank and Gaza"
+          },
+          {
+            "selected": false,
+            "text": "Guinea-Bissau",
+            "value": "Guinea-Bissau"
+          },
+          {
+            "selected": false,
+            "text": "Mali",
+            "value": "Mali"
+          },
+          {
+            "selected": false,
+            "text": "Saint Kitts and Nevis",
+            "value": "Saint Kitts and Nevis"
+          },
+          {
+            "selected": false,
+            "text": "Kosovo",
+            "value": "Kosovo"
+          },
+          {
+            "selected": false,
+            "text": "Burma",
+            "value": "Burma"
+          },
+          {
+            "selected": false,
+            "text": "MS Zaandam",
+            "value": "MS Zaandam"
+          },
+          {
+            "selected": false,
+            "text": "Botswana",
+            "value": "Botswana"
+          },
+          {
+            "selected": false,
+            "text": "Burundi",
+            "value": "Burundi"
+          },
+          {
+            "selected": false,
+            "text": "Sierra Leone",
+            "value": "Sierra Leone"
+          }
+        ],
+        "query": "select distinct(country) from covid_data",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-2d/d",
+    "to": "now-2d/d"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Covid-19",
+  "uid": "qzU9Gu9Zk",
+  "version": 36
+}
